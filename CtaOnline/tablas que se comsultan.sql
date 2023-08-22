@@ -1,0 +1,27 @@
+#tablas que se comsultan 
+mg_paises
+Mg_Residencias
+Mg_Niveles_Estudio
+mg_profesiones
+mg_actividades_economicas
+mg_departamentos
+mg_municipios
+mg_parroquias
+mg_barrios
+mg_tipos_dependencia_laboral
+mg_tipos_referencias_per
+mg_estado_civil
+Mg_Operadoras_Telefonicas
+mg_emisores_correo
+
+#paquetes y procedimientos 
+mg_k_servicios_web_interna.mg_p_valida_cliente
+mg_k_servicios_web_interna.Mg_p_carga_cliente2
+mg_k_servicios_web_interna.Mg_p_carga_cliente
+mg_k_servicios_web_interna.mg_p_carga_direccion
+mg_k_servicios_web_interna.Mg_p_carga_telefono
+mg_k_servicios_web_interna.Mg_p_carga_empleo
+mg_k_servicios_web_interna.Mg_p_carga_balace
+mg_k_servicios_web_interna.Mg_p_carga_referencias
+mg_k_servicios_web_interna.Mg_p_Registra_Cliente_PerNat
+mg_k_servicios_web_interna.mg_p_actualiza_cliente_pernat

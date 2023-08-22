@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+    <title th:text="${titulo}"></title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+    <!-- Theme style -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+            rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/adminlte/dist/css/adminlte.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/plugins/nprogress-0.2.0/nprogress.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/plugins/select2/css/select2.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/plugins/datetimerpicker/build/css/bootstrap-datetimepicker.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/plugins/sweetalert2/sweetalert2.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/plugins/toastr/toastr.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.css}">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/plugins/bootstrap-switch/css/bootstrap4-toggle.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="icon" type="image/png"
+          th:href="@{/images/favicon-coin-16x16.png}">
+
+</head>
+
+<body class="hold-transition layout-top-nav">
+<div class="wrapper">
+
+    <!-- Navbar -->
+
+    <!-- /.navbar -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div class="col-3 ">
+                    <img class="img-fluid " th:src="@{/images/logo.png}"/>
+                </div>
+                <div class="col-md-2 mt-4">
+                    <a th:href="@{/}" class="btn btn-outline-secondary"> <i
+                            class="fas fa-sign-out-alt">&nbsp;Salir</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <img class="barra" th:src="@{/images/barra.png}"/>
+        <!-- Main content -->
+        <div class="content mt-2" id="barras">
+            <div class="container" id="app">
+
+                <div class="col-10 col-md-10 col-sm-12 offset-1">
+                    <div class="card border-dark bg-light card-default">
+
+                        <div class="card-header  p-0 pt-1 border-bottom-0">
+                            <div class="d-flex justify-content-between">
+
+                                <ul class="nav nav-tabs" id="tabs_cta" role="tablist">
+                                    <li class="nav-item" data-toggle="ingrese datos basicos">
+                                        <a class="nav-link active"
+                                           id="datos-basicos-tab" data-toggle="tab"
+                                           href="#datos-basicos" role="tab"
+                                           aria-controls="datos-basicos" aria-selected="true"> <i
+                                                class="far fa-address-card fa-2x"></i>
+                                        </a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled"
+                                           id="domicilio-tab" data-toggle="tab" href="#domicilio"
+                                           role="tab" aria-controls="domicilio" aria-selected="false">
+                                            <i class="fas fa-house-user fa-2x"></i>
+                                        </a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled" id="empleo-tab"
+                                           data-toggle="tab" href="#empleo" role="tab"
+                                           aria-controls="empleo" aria-selected="false"> <i
+                                                class="fas fa-hand-holding-usd fa-2x"></i>
+                                        </a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled"
+                                           id="referencia-tab" data-toggle="tab" href="#ref_personal"
+                                           role="tab" aria-controls="ref_personal" aria-selected="false">
+                                            <i class="fas fa-address-book fa-2x"></i>
+                                        </a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled" id="paraiso-tab"
+                                           data-toggle="tab" href="#paraiso" role="tab"
+                                           aria-controls="paraiso" aria-selected="false"> <i
+                                                class="fas fa-money-check-alt fa-2x"></i>
+                                        </a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled"
+                                           id="documentos-tab" data-toggle="tab" href="#documentos"
+                                           role="tab" aria-controls="documentos" aria-selected="false">
+                                            <i class="fas fa-file-upload fa-2x"></i>
+                                        </a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link disabled" id="debito-tab"
+                                           data-toggle="tab" href="#debito" role="tab"
+                                           aria-controls="debito" aria-selected="false"> <i
+                                                class="far fa-credit-card fa-2x"></i>
+                                        </a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="datos-basicos" role="tabpanel"
+                                     aria-labelledby="datos-basicos-tab">
+                                    <form role="form" class="form-horizontal"
+                                          id="form_datos_basicos">
+                                        <fieldset class="border px-3">
+                                            <legend class="w-auto">Datos Personales</legend>
+                                            <div class="form-group row">
+                                                <input type="hidden" name="opt" id="opt"
+                                                       th:value="${opt}?:'0'"/> <input type="hidden"
+                                                                                       name="codigoIdentificacion"
+                                                                                       id="codigoIdentificacion"
+                                                                                       th:value="${dni}"/> <label
+                                                    for="cedula"
+                                                    class="col-md-2 col-form-label text-right">N°
+                                                Identificación:</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" data-parsley-type="digits"
+                                                           minlength="10" class="form-control" v-model="cedula"
+                                                           th:value="${dni}" id="cedula" name="cedula"
+                                                           placeholder="identificacion" required disabled/>
+                                                </div>
+
+                                                <label for="txt_cod_dactilar"
+                                                       class="col-md-2 col-form-label text-right">Código
+                                                    Dactilar:</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" name="txt_cod_dactilar"
+                                                           id="txt_cod_dactilar" class="form-control"
+                                                           th:value="${cod_dactilar}" placeholder="cod.dactilar"
+                                                           disabled/>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="apellidoUno"
+                                                       class="col-md-2 col-form-label text-right">1er Apellido:</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="apellidoUno"
+                                                           name="apellidoUno" v-model="datosPersonales.apellidoUno"
+                                                           @input="datosPersonales.apellidoUno=$event.target.value.toUpperCase()"
+                                                           placeholder="primer apellido" required/>
+                                                </div>
+
+                                                <label for="apellidosDos"
+                                                       class="col-md-2 col-form-label text-right">2do Apellido:</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="apellidosDos"
+                                                           name="apellidosDos" v-model="datosPersonales.apellidoDos"
+                                                           @input="datosPersonales.apellidoDos=$event.target.value.toUpperCase()"
+                                                           placeholder="segundo apellido" required/>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="nombres"
+                                                       class="col-md-2 col-form-label text-right">Nombres:</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" id="nombres"
+                                                           name="nombres" v-model="datosPersonales.nombres"
+                                                           @input="datosPersonales.nombres=$event.target.value.toUpperCase()"
+                                                           placeholder="nombres" required/>
+                                                </div>
+
+                                                <label for="fechaNacimiento"
+                                                       class="col-md-2 col-form-label text-right">Fecha
+                                                    Nacimiento:</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" id="fechaNacimiento"
+                                                           name="fechaNacimiento"
+                                                           v-model="datosPersonales.fechaNacimiento"
+                                                           class="form-control" placeholder="dd/mm/yyyy" required/>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label for="sexo"
+                                                       class="col-md-2 col-form-label text-right">Sexo:</label>
+                                                <div class="col-md-4">
+                                                    <select name="sexo" v-model="datosPersonales.sexo"
+                                                            id="sexo" class="custom-select" required>
+                                                        <option value="">seleccione</option>
+                                                        <option value="M"
+                                                                :selected="datosPersonales.sexo === 'M' ">Masculino
+                                                        </option>
+                                                        <option value="F"
+                                                                :selected="datosPersonales.sexo === 'F' ">Femenino
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <label for="tipoResidencia"
+                                                       class="col-md-2 col-form-label text-right">Tipo
+                                                    Residencia:</label>
+                                                <div class="col-md-4">
+                                                    <select name="tipoResidencia" id="tipoResidencia"
+                                                            v-model="datosComplementarios.tipoResidencia"
+                                                            class="custom-select" required>
+                                                        <option value="">seleccione</option>
+                                                        <option v-for="residencia in residenciaList"
+                                                                :value="residencia.codigo">{{residencia.descripcion}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label for="estadoCivil"
+                                                       class="col-md-2 col-form-label text-right">Estado
+                                                    Civil:</label>
+                                                <div class="col-md-4">
+                                                    <select name="estadoCivil" id="estadoCivil"
+                                                            v-model="datosPersonales.estadoCivil"
+                                                            class="custom-select" required>
+                                                        <option value="">seleccione</option>
+                                                        <option v-for="estadoCivil in ListaEstadoCivil"
+                                                                :value="estadoCivil.codigoEstadoCivil"
+                                                                :selected="datosPersonales.estadoCivil">
+                                                            {{estadoCivil.estadoCivil}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <label for="codigoPais"
+                                                       class="col-md-2 col-form-label text-right">Nacionalidad:</label>
+                                                <div class="col-md-4">
+                                                    <select name="codigoPais" id="codigoPais"
+                                                            v-model="datosDomicilio.codigoPais"
+                                                            class="miselect custom-select" required>
+                                                        <option value="">seleccione</option>
+                                                        <option v-for="nacionalidad in nacionalidadList"
+                                                                :value="nacionalidad.codigo_pais"
+                                                                :selected="datosDomicilio.codigoPais">
+                                                            {{nacionalidad.nacionalidad}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="lugarNacimiento"
+                                                       class="col-md-2 col-form-label text-right">Lugar
+                                                    Nacimiento:</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" name="lugarNacimiento"
+                                                           v-model="datosPersonales.lugarNacimiento"
+                                                           @input="datosPersonales.lugarNacimiento=$event.target.value.toUpperCase()"
+                                                           id="lugarNacimiento" class="form-control"
+                                                           placeholder="lugar de nacimiento" required/>
+                                                </div>
+
+                                            </div>
+
+                                        </fieldset>
+                                        <br>
+                                        <fieldset class="border px-3">
+                                            <legend class="w-auto">Datos Complementarios</legend>
+
+                                            <div class="form-group row">
+                                                <label for="nivelEducativo"
+                                                       class="col-md-2 col-form-label text-right">Nivel
+                                                    Estudios:</label>
+                                                <div class="col-md-4">
+                                                    <select name="nivelEducativo" id="nivelEducativo"
+                                                            v-model="datosPersonales.nivelEstudio"
+                                                            class="custom-select" required>
+                                                        <option value="">seleccione</option>
+                                                        <option v-for="nivel in nivelEducativoList"
+                                                                :value="nivel.nivel"
+                                                                :selected="datosPersonales.nivelEstudio">
+                                                            {{nivel.descripcion}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <label for="codigoProfesion"
+                                                       class="col-md-2 col-form-label text-right">Profesión:</label>
+                                                <div class="col-md-4">
+                                                    <select name="codigoProfesion" id="codigoProfesion"
+                                                            v-model="datosComplementarios.codigoProfesion"
+                                                            class="miselect custom-select" required>
+                                                        <option value="">seleccione</option>
+                                                        <option v-for="profesion in profesionList"
+                                                                :value="profesion.codigoProfesion"
+                                                                :selected="datosComplementarios.codigoProfesion === profesion.codigoProfesion">
+                                                            {{profesion.descripcion}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="codigoActividadEconomica"
+                                                       class="col-md-2 col-form-label text-right">Act.
+                                                    Económica:</label>
+                                                <div class="col-md-10">
+                                                    <select name="codigoActividadEconomica"
+                                                            id="codigoActividadEconomica"
+                                                            class="miselect custom-select"
+                                                            v-model="datosComplementarios.codigoActividadEconomica"
+                                                            required>
+                                                        <option value="">seleccione</option>
+                                                        <option v-for="actividad in actividadEconomicaList"
+                                                                :value="actividad.codigoActividadEconomica"
+                                                                :selected="datosComplementarios.codigoActividadEconomica === actividad.codigoActividadEconomica">
+                                                            {{actividad.descripcion}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="descripcionNegocio"
+                                                       class="col-md-2 col-form-label text-right">Tipo
+                                                    Negocio:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="descripcionNegocio"
+                                                           id="descripcionNegocio" class="form-control"
+                                                           v-model="datosComplementarios.descripcionNegocio"
+                                                           @input="datosComplementarios.descripcionNegocio=$event.target.value.toUpperCase()"
+                                                           placeholder="ejemplo: empresa donde labora" required/>
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="domicilio" role="tabpanel"
+                                     aria-labelledby="domicilio-tab">
+                                    <!-- /.card-header -->
+                                    <form id="form_domicilio" role="form" class="form-horizontal">
+                                        <fieldset class="border px-3">
+                                            <legend class="w-auto">Datos Domicilio</legend>
+
+                                            <div class="form-group row">
+                                                <label for="codigoDepartamento"
+                                                       class="col-md-2 col-form-label text-right">Provincia:</label>
+                                                <div class="col-md-4">
+                                                    <select name="codigoDepartamento" id="codigoDepartamento"
+                                                            v-model="datosDomicilio.codigoDepartamento"
+                                                            @change="ChangeProvincia($event.target.value)"
+                                                            class="custom-select"
+                                                            required>
+                                                        <option value="">seleccione</option>
+                                                        <option v-for="provincia in provinciaList"
+                                                                :value="provincia.codigoDepartamento"
+                                                                :selected="datosDomicilio.codigoDepartamento === provincia.codigoDepartamento">
+                                                            {{provincia.nombre}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <input type="hidden" name="codigoAgencia"
+                                                       id="codigoAgencia" value=""/> <label
+                                                    for="codigoMunicipio"
+                                                    class="col-md-2 col-form-label text-right">Cantón:</label>
+                                                <div class="col-md-4">
+                                                    <select name="codigoMunicipio" id="codigoMunicipio"
+                                                            v-model="datosDomicilio.codigoMunicipio"
+                                                            @change="ChangeCanton()" class="miselect custom-select"
+                                                            required>
+                                                        <option value="">seleccione</option>
+                                                        <option v-for="canton in cantonesList"
+                                                                :value="canton.codigoMunicipio"
+                                                                :selected="datosDomicilio.codigoMunicipio === canton.codigoMunicipio">
+                                                            {{canton.nombre}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label for="codigoParroquia"
+                                                       class="col-md-2 col-form-label text-right">Parroquia:</label>
+                                                <div class="col-md-4">
+                                                    <select name="codigoParroquia" id="codigoParroquia"
+                                                            v-model="datosDomicilio.codigoParroquia"
+                                                            @change="ChangeParroquia()"
+                                                            class="miselect custom-select" required>
+                                                        <option value="">seleccione</option>
+                                                        <option v-for="parroquia in parroquiasList"
+                                                                :value="parroquia.codigoParroquia"
+                                                                :selected="parroquia.codigoParroquia === datosDomicilio.codigoParroquia">
+                                                            {{parroquia.descripcion}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <label for="barrio"
+                                                       class="col-md-2 col-form-label text-right">Barrio:</label>
+                                                <div class="col-md-4">
+                                                    <select name="barrio" id="barrio"
+                                                            class="miselect custom-select"
+                                                            v-model="datosDomicilio.barrio" required>
+                                                        <option value="">seleccione</option>
+                                                        <option v-for="barrio in barriosList"
+                                                                :value="barrio.codigoBarrio"
+                                                                :selected="barrio.codigoBarrio === datosDomicilio.barrio">
+                                                            {{barrio.nombre}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="calle"
+                                                       class="col-md-2 col-form-label text-right">Calle:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="calle" id="calle"
+                                                           v-model="datosDomicilio.calle" maxlength="50" class="form-control"
+                                                           @input="datosDomicilio.calle=$event.target.value.toUpperCase()"
+                                                           placeholder="calle" required/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label for="nomenclatura"
+                                                       class="col-md-2 col-form-label text-right">Referencia:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="nomenclatura" id="nomenclatura"
+                                                           v-model="datosDomicilio.nomenclatura" maxlength="50"
+                                                           @input="datosDomicilio.nomenclatura=$event.target.value.toUpperCase()"
+                                                           class="form-control" placeholder="referencia" required/>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label for="operadoraCelular"
+                                                       class="col-md-2 col-form-label text-right">Operadora:</label>
+                                                <div class="col-md-2">
+                                                    <select name="operadoraCelular" id="operadoraCelular"
+                                                            v-model="datosTelefono.operadoraCelular"
+                                                            class="custom-select" required>
+                                                        <option value="">seleccione</option>
+                                                        <option v-for="operadora in operadoraCelularList"
+                                                                :value="operadora.codigoTipoOperadora"
+                                                                :selected="datosTelefono.operadoraCelular === operadora.codigoTipoOperadora">
+                                                            {{operadora.descripcion}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <label for="numeroCelular"
+                                                       class="col-md-1 col-form-label">Celular:</label>
+                                                <div class="col-md-3">
+                                                    <input type="tel" name="numeroCelular" id="numeroCelular"
+                                                           v-model="datosTelefono.numeroCelular" minlength="10"
+                                                           maxlength="10" data-parsley-type="digits"
+                                                           class="form-control" placeholder="celular" required/>
+                                                </div>
+
+                                                <label for="numeroConvencional"
+                                                       class="col-md-2 col-form-label text-right">Convencional:</label>
+                                                <div class="col-md-2">
+                                                    <input type="tel" name="numeroConvencional"
+                                                           v-model="datosTelefono.numeroConvencional"
+                                                           minlength="7" maxlength="10" data-parsley-type="digits"
+                                                           id="numeroConvencional" class="form-control"
+                                                           placeholder="convencional"/>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="email"
+                                                       class="col-md-2 col-form-label text-right">Correo:</label>
+                                                <div class="col-md-10">
+                                                    <input type="email" name="email" id="email"
+                                                           v-model="datosDomicilio.email" class="form-control"
+                                                           placeholder="email" required/>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                    </form>
+
+                                </div>
+                                <div class="tab-pane fade" id="empleo" role="tabpanel"
+                                     aria-labelledby="empleo-tab">
+                                    <form id="form_empleo_ingresos" role="form">
+                                        <fieldset class="border px-3">
+
+
+                                            <legend class="w-auto">Empleo</legend>
+
+                                            <div class="form-group row">
+
+                                                <label for="nombreEmpresaEmpleo"
+                                                       class="col-md-1 col-form-label">Empresa</label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="nombreEmpresaEmpleo"
+                                                           id="nombreEmpresaEmpleo" class="form-control"
+                                                           v-model="datosEmpleo.nombreEmpresaEmpleo"
+                                                           @input="datosEmpleo.nombreEmpresaEmpleo=$event.target.value.toUpperCase()"
+                                                           maxlength="30" placeholder="empresa" required="required"/>
+                                                </div>
+
+                                                <label for="tipoDependenciaEmpleo"
+                                                       class="col-md-2 col-form-label">Relación Laboral:</label>
+                                                <div class="col-md-4">
+                                                    <select name="tipoDependenciaEmpleo"
+                                                            v-model="datosEmpleo.tipoDependenciaEmpleo"
+                                                            id="tipoDependenciaEmpleo" class="custom-select"
+                                                            required="required">
+                                                        <option value="">seleccione</option>
+                                                        <option
+                                                                v-for="dependenciaEmpleo in dependenciaEmpleoList"
+                                                                :value="dependenciaEmpleo.codigoTipoDependencia"
+                                                                :selected="datosEmpleo.tipoDependenciaEmpleo === dependenciaEmpleo.codigoTipoDependencia">
+                                                            {{dependenciaEmpleo.descripcion}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label for="codigoDepartamentoEmpleo"
+                                                       class="col-md-2 col-form-label">Provincia:</label>
+                                                <div class="col-md-4">
+                                                    <select name="codigoDepartamentoEmpleo"
+                                                            v-model="datosEmpleo.codigoDepartamentoEmpleo"
+                                                            @change="ChangeProvinciaEmpleo()"
+                                                            id="codigoDepartamentoEmpleo"
+                                                            class="miselect custom-select" required="required">
+                                                        <option value="">seleccione</option>
+                                                        <option
+                                                                v-for=" departamentoEmpleo in departamentoEmpleoList "
+                                                                :value="departamentoEmpleo.codigoDepartamento"
+                                                                :selected="datosEmpleo.codigoDepartamentoEmpleo === departamentoEmpleo.codigoDepartamento ">
+                                                            {{departamentoEmpleo.nombre}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <label for="codigoMunicipioEmpleo"
+                                                       class="col-md-2 col-form-label">Ciudad:</label>
+                                                <div class="col-md-4">
+                                                    <select name="codigoMunicipioEmpleo"
+                                                            v-model="datosEmpleo.codigoMunicipioEmpleo"
+                                                            id="codigoMunicipioEmpleo" class="miselect custom-select"
+                                                            required="required">
+                                                        <option value="">seleccione</option>
+                                                        <option v-for=" municipioEmpleo in municipioEmpleoList"
+                                                                :value="municipioEmpleo.codigoMunicipio"
+                                                                :selected="datosEmpleo.codigoMunicipioEmpleo">
+                                                            {{municipioEmpleo.nombre}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label for="fechaIngreso" class="col-md-2 col-form-label">Fecha
+                                                    Ingreso:</label>
+                                                <div class="col-md-3">
+                                                    <input type="text" name="fechaIngreso" id="fechaIngreso"
+                                                           v-model="datosEmpleo.fechaIngreso" class="form-control"
+                                                           data-parsley-trigger="change" placeholder="dd/mm/yyyy"/>
+                                                </div>
+
+                                                <label for="cargoEmpleo" class="col-md-1 col-form-label">Cargo:</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="cargoEmpleo" id="cargoEmpleo"
+                                                           v-model="datosEmpleo.cargoEmpleo" class="form-control"
+                                                           @input="datosEmpleo.cargoEmpleo=$event.target.value.toUpperCase()"
+                                                           maxlength="30" placeholder="cargo" required="required"/>
+                                                </div>
+
+                                            </div>
+
+                                        </fieldset>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="justify-content-center">
+                                                    <fieldset class="border px-3">
+                                                        <legend class="w-auto">Ingresos</legend>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-md-8">
+                                                                <label for="ingresoSueldo" class="col-form-label">Sueldo:</label>
+                                                                <input type="text" name="ingresoSueldo"
+                                                                       v-model="datosBalance.ingresoSueldo"
+                                                                       @keypress="ValidaNumber"
+                                                                       id="ingresoSueldo"
+                                                                       class="form-control text-right"
+                                                                       placeholder="sueldo"
+                                                                       data-parsley-pattern="^\d+(\.\d{1,2})?$"
+                                                                       required/>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-md-8">
+                                                                <label for="ingresoNegocio"
+                                                                       class="col-form-label text-right">Negocio:</label>
+                                                                <input
+                                                                        type="text" name="ingresoNegocio"
+                                                                        id="ingresoNegocio"
+                                                                        v-model="datosBalance.ingresoNegocio"
+                                                                        @keypress="ValidaNumber"
+                                                                        class="form-control text-right"
+                                                                        placeholder="negocio"
+                                                                        data-parsley-pattern="^\d+(\.\d{1,2})?$"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-md-8">
+                                                                <label for="ingresoRenta"
+                                                                       class="col-form-label text-right">Renta:</label>
+                                                                <input
+                                                                        type="text" name="ingresoRenta"
+                                                                        id="ingresoRenta"
+                                                                        v-model="datosBalance.ingresoRenta"
+                                                                        @keypress="ValidaNumber"
+                                                                        class="form-control text-right"
+                                                                        placeholder="renta"
+                                                                        data-parsley-pattern="^\d+(\.\d{1,2})?$"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-md-8">
+                                                                <label for="ingresoConyuge"
+                                                                       class="col-form-label text-right">Cónyuge:</label>
+                                                                <input
+                                                                        type="text" name="ingresoConyuge"
+                                                                        id="ingresoConyuge"
+                                                                        v-model="datosBalance.ingresoConyuge"
+                                                                        @keypress="ValidaNumber"
+                                                                        class="form-control text-right"
+                                                                        placeholder="conyuge"
+                                                                        data-parsley-pattern="^\d+(\.\d{1,2})?$"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-md-8">
+                                                                <label for="ingresoOtros"
+                                                                       class="col-form-label text-right">
+                                                                    Otros Ingresos:</label> <input type="text"
+                                                                                                   name="ingresoOtros"
+                                                                                                   v-model="datosBalance.ingresoOtros"
+                                                                                                   @keypress="ValidaNumber"
+                                                                                                   id="ingresoOtros"
+                                                                                                   class="form-control text-right"
+                                                                                                   data-parsley-pattern="^\d+(\.\d{1,2})?$"
+                                                                                                   placeholder="otros ingresos"
+                                                                                                   required/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row">
+                                                            <div class="col-md-8">
+                                                                <label for="comentario">Justificar otros
+                                                                    ingresos</label>
+                                                                <textarea name="comentario" id="comentario"
+                                                                          v-model="datosComplementarios.comentario"
+                                                                          @input="datosComplementarios.comentario=$event.target.value.toUpperCase()"
+                                                                          class="form-control"
+                                                                          :disabled="datosBalance.ingresoOtros <= 0"
+                                                                          placeholder="Justificar otros ingresos"
+                                                                          :required="datosBalance.ingresoOtros > 0"></textarea>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </fieldset>
+                                                </div>
+
+                                            </div>
+                                            <div class="col">
+                                                <fieldset class="border px-3">
+                                                    <legend class="w-auto">Gastos</legend>
+
+                                                    <div class="form-group row">
+                                                        <div class="col-md-8">
+                                                            <label for="egresosAlimentacion"
+                                                                   class="col-form-label text-right">Alimentacion:</label>
+                                                            <input type="text" name="egresosAlimentacion"
+                                                                   id="egresosAlimentacion"
+                                                                   v-model="datosBalance.egresosAlimentacion"
+                                                                   @keypress="ValidaNumber"
+                                                                   class="form-control text-right"
+                                                                   placeholder="alimentacion"
+                                                                   data-parsley-pattern="^\d+(\.\d{1,2})?$" required/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <div class="col-md-8">
+                                                            <label for="egresosServiciosBasicos"
+                                                                   class="col-form-label text-right">Servicios
+                                                                Básicos:</label> <input type="text"
+                                                                                        name="egresosServiciosBasicos"
+                                                                                        id="egresosServiciosBasicos"
+                                                                                        v-model="datosBalance.egresosServiciosBasicos"
+                                                                                        @keypress="ValidaNumber"
+                                                                                        class="form-control text-right"
+                                                                                        placeholder="serv. basicos"
+                                                                                        data-parsley-pattern="^\d+(\.\d{1,2})?$"
+                                                                                        required/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <div class="col-md-8">
+                                                            <label for="egresosvehiculo"
+                                                                   class="col-form-label text-right">Vehículo:</label>
+                                                            <input
+                                                                    type="text" name="egresosvehiculo"
+                                                                    id="egresosvehiculo"
+                                                                    v-model="datosBalance.egresosVehiculo"
+                                                                    @keypress="ValidaNumber"
+                                                                    class="form-control text-right"
+                                                                    placeholder="vehículo"
+                                                                    data-parsley-pattern="^\d+(\.\d{1,2})?$"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <div class="col-md-8">
+                                                            <label for="egresosTransporte"
+                                                                   class="col-form-label text-right">Transporte:</label>
+                                                            <input
+                                                                    type="text" name="egresosTransporte"
+                                                                    id="egresosTransporte"
+                                                                    class="form-control text-right"
+                                                                    v-model="datosBalance.egresosTransporte"
+                                                                    @keypress="ValidaNumber"
+                                                                    placeholder="transporte"
+                                                                    data-parsley-pattern="^\d+(\.\d{1,2})?$"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <div class="col-md-8">
+                                                            <label for="egresosSalud"
+                                                                   class="col-form-label text-right">Salud:</label>
+                                                            <input
+                                                                    type="text" name="egresosSalud" id="egresosSalud"
+                                                                    v-model="datosBalance.egresosSalud"
+                                                                    @keypress="ValidaNumber"
+                                                                    class="form-control text-right" placeholder="salud"
+                                                                    data-parsley-pattern="^\d+(\.\d{1,2})?$" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-8">
+                                                            <label for="egresosEducacion"
+                                                                   class="col-form-label text-right">Educación:</label>
+                                                            <input
+                                                                    type="text" name="egresosEducacion"
+                                                                    v-model="datosBalance.egresosEducacion"
+                                                                    @keypress="ValidaNumber"
+                                                                    id="egresosEducacion"
+                                                                    class="form-control text-right"
+                                                                    placeholder="educacion"
+                                                                    data-parsley-pattern="^\d+(\.\d{1,2})?$"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <div class="col-md-8">
+                                                            <label for="egresosOtros"
+                                                                   class="col-form-label text-right">Otros
+                                                                Gastos:</label>
+                                                            <input type="text" name="egresosOtros" id="egresosOtros"
+                                                                   v-model="datosBalance.egresosOtros"
+                                                                   @keypress="ValidaNumber"
+                                                                   class="form-control text-right"
+                                                                   placeholder="otros gastos"
+                                                                   data-parsley-pattern="^\d+(\.\d{1,2})?$"/>
+                                                        </div>
+                                                    </div>
+
+
+                                                </fieldset>
+                                            </div>
+
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="ref_personal" role="tabpanel"
+                                     aria-labelledby="referencia-tab">
+                                    <form id="form_referencia" role="form">
+                                        <fieldset class="border px-3">
+                                            <legend class="w-auto">Referencia</legend>
+
+                                            <div class="form-group row">
+
+                                                <label for="primerApellidoRef"
+                                                       class="col-md-2 col-form-label text-right">Apellidos:</label>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="primerApellidoRef"
+                                                           id="primerApellidoRef" class="form-control"
+                                                           v-model="datosReferencia.primerApellidoRef"
+                                                           @input="datosReferencia.primerApellidoRef=$event.target.value.toUpperCase()"
+                                                           placeholder="primer apellido" required/>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <input type="text" name="segundoApellidoRef"
+                                                           id="segundoApellidoRef" class="form-control"
+                                                           v-model="datosReferencia.segundoApellidoRef"
+                                                           @input="datosReferencia.segundoApellidoRef=$event.target.value.toUpperCase()"
+                                                           placeholder="segundo apellido" required/>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label for="nombresRef"
+                                                       class="col-md-2 col-form-label text-right">Nombres:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="nombresRef" id="nombresRef"
+                                                           v-model="datosReferencia.nombresRef" class="form-control"
+                                                           @input="datosReferencia.nombresRef=$event.target.value.toUpperCase()"
+                                                           placeholder="nombres" required/>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label for="tipoRef"
+                                                       class="col-md-2 col-form-label text-right">Parentesco:</label>
+                                                <div class="col-md-4">
+                                                    <select name="tipoRef" id="tipoRef" class="custom-select"
+                                                            v-model="datosReferencia.tipoRef" required>
+                                                        <option value="">seleccione</option>
+                                                        <option v-for=" parentesco in parentescosList"
+                                                                :value="parentesco.codigoReferenciaPersonal"
+                                                                :selected="parentesco.codigoReferenciaPersonal === datosReferencia.tipoRef">
+                                                            {{parentesco.descripcion}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <label for="telefonoRef"
+                                                       class="col-md-2 col-form-label text-right">Teléfono:</label>
+                                                <div class="col-md-4 ">
+                                                    <input type="tel" name="telefonoRef" id="telefonoRef"
+                                                           minlength="9" maxlength="10" data-parsley-type="digits"
+                                                           v-model="datosReferencia.telefonoRef"
+                                                           class="form-control" placeholder="teléfono" required/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+
+                                                <label for="direccionRef"
+                                                       class="col-md-2 col-form-label text-right">Dirección:</label>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="direccionRef" id="direccionRef"
+                                                           v-model="datosReferencia.direccionRef"
+                                                           @input="datosReferencia.direccionRef=$event.target.value.toUpperCase()"
+                                                           class="form-control" placeholder="dirección" required/>
+                                                </div>
+
+                                            </div>
+
+                                        </fieldset>
+                                    </form>
+
+                                </div>
+                                <div class="tab-pane fade" id="paraiso" role="tabpanel" aria-labelledby="paraiso-tab">
+                                    <form id="form_paraiso">
+                                        <fieldset class="border px-3 pt-3">
+                                            <legend class="w-auto">Residencia Fiscal Del
+                                                Cuentahabiente
+                                            </legend>
+                                            <div class="form-group row ml-1">
+                                                <input type="hidden" name="estadounidense"
+                                                       id="estadounidense" value="N" maxlength="1"> <label>
+                                                ¿Es una persona estadounidense para fines fiscales? &nbsp;
+                                                <input type="checkbox" id="usa_option"
+                                                       v-model="chk_usa_option_state"/>
+                                            </label>
+                                            </div>
+                                            <div class="form-group row ml-1">
+                                                <input type="hidden" name="residenteOtroPais"
+                                                       id="residenteOtroPais" value="N" maxlength="1"> <label>
+                                                ¿Es residente de cualquier otro país distinto a Estados
+                                                Unidos para fines fiscales?&nbsp; <input type="checkbox"
+                                                                                         id="otro_pais"
+                                                                                         v-model="chk_otro_pais_state"/>
+                                            </label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="border px-3 pt-3">
+                                            <legend class="w-auto">Persona publica</legend>
+                                            <div class="form-group row ml-1">
+                                                <input type="hidden" name="PersonaExpuesta" id="PersonaExpuesta"
+                                                       value="N" maxlength="1">
+                                                <label>
+                                                    ¿Usted es una persona públicamente expuesta?&nbsp;
+                                                    <input type="checkbox"
+                                                           id="chk_persona_publica"
+                                                           v-model="chk_persona_publica"/>
+                                                </label>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="documentos" role="tabpanel" aria-labelledby="debito-tab">
+
+                                    <form id="form_documentos">
+                                        <fieldset class="border px-3 pt-3">
+                                            <legend class="w-auto">Cargar Documentos Requeridos</legend>
+                                            <div class="form-group row">
+                                                <div class="col-md-7">
+                                                    <label for="cedula_file">CEDULA LADO FRONTAL (PDF O FOTO , Max
+                                                        2MB):</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control"
+                                                               name="cedula_file_f" id="cedula_file_f"
+                                                               required="required">
+                                                        <div class="input-group-append">
+                                                            <div class="input-group-text" for="cedula_file_f">
+                                                                <span class="far fa-address-card"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-md-7">
+                                                    <label for="cedula_file">CEDULA LADO POSTERIOR (PDF O FOTO , Max
+                                                        2MB):</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control"
+                                                               name="cedula_file_p" id="cedula_file_p"
+                                                               required="required">
+                                                        <div class="input-group-append">
+                                                            <div class="input-group-text" for="cedula_file_p">
+                                                                <span class="far fa-credit-card"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-md-7">
+                                                    <label for="sb_file">PLANILLA DE SERVICIO BÁSICO (PDF O
+                                                        FOTO, Max 2MB):</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" class="form-control"
+                                                               name="sb_file" id="sb_file" required="required">
+                                                        <div class="input-group-append">
+                                                            <div class="input-group-text" for="sb_file">
+                                                                <span class="fas fa-file-invoice"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="debito" role="tabpanel"
+                                     aria-labelledby="debito-tab">
+                                    <form id="form_debito">
+                                        <input type="hidden" id="terminosTarjeta" name="terminosTarjeta" value=""/>
+                                        <input type="hidden" id="terminosCertificado" name="terminosCertificado"
+                                               value=""/>
+                                        <input type="hidden" id="terminosContrato" name="terminosContrato" value=""/>
+
+                                        <br>
+                                        <fieldset class="border px-3 pt-3">
+                                            <legend class="w-auto">Certificado De Aportación</legend>
+                                            <div class="form-group row ml-1">
+                                                <p>Solicito a la Cooperativa de Ahorro y Credito 15 de
+                                                    Abril me ACEPTE en calidad de socio, para lo cual suscribo
+                                                    los aportes minimos para obtener la categoria de socio y
+                                                    autorizo el débito respectivo</p>
+                                                <div class="icheck-success">
+                                                    <input type="checkbox" v-model="aportaciones" id="aportaciones"
+                                                           required>
+                                                    <label for="aportaciones"> <a href="#"
+                                                                                  id="terminos_certificaciones">Acepto
+                                                        términos y
+                                                        condiciones</a>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <br>
+                                        <fieldset class="border px-3 pt-3">
+                                            <legend class="w-auto">Contrato Cuenta De Ahorros</legend>
+                                            <p>Acepto y ratifico cada uno de las cláusulas
+                                                estipuladas en el contrato.</p>
+                                            <div class="form-group row ml-1">
+                                                <div class="icheck-success">
+                                                    <input type="checkbox" v-model="contrato_cuenta_ahorro"
+                                                           id="contrato_cuenta_ahorro" required>
+                                                    <label for="contrato_cuenta_ahorro">
+                                                        <a href="#" id="terminos_contrato_cuenta_ahorro">Acepto
+                                                            términos y condiciones</a>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="float-left">
+                                <button type='submit' id="btn_prev" class="btn btn-secondary">
+                                    <i class="fas fa-chevron-circle-left"></i>&nbsp;Anterior
+                                </button>
+                                <button type='submit' id="btn_next" class="btn btn-info">
+                                    Siguiente&nbsp;<i class="fas fa-chevron-circle-right"></i>
+                                </button>
+                            </div>
+                            <div class="float-right">
+                                <button type="submit" id="btn_enviar" name="btn_enviar"
+                                        class="btn btn-success">
+                                    Crear Cuenta&nbsp;<i class="fas fa-plus-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1"
+                         role="dialog" aria-labelledby="exampleModalLongTitle"
+                         aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">
+                                        <i class="fas fa-check-circle"></i>&nbsp;Cooperativa 15 de abril
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <iframe id='frame_modal' height='400' width='100%'></iframe>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cerrar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="modal_contrato" tabindex="-1"
+                         role="dialog" aria-labelledby="exampleModalLongTitle"
+                         aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">
+                                        <i class="fas fa-check-circle"></i>&nbsp;Cooperativa 15 de
+                                        abril
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <iframe id='frame_modal_contrato' height='400' width='100%'
+                                                frameborder='0'></iframe>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-success"
+                                            data-dismiss="modal">Cerrar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- fin de Modal -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer bg-light">
+        <!-- To the right -->
+        <div class="float-right d-none d-sm-inline">v 0.0.1</div>
+        <!-- Default to the left -->
+        <div class="container">
+            <div class="text-center">
+                <strong> <a href="https://www.coop15abril.fin.ec/"
+                            target="_blank"> Cooperativa de Ahorro y Crédito 15 de Abril </a>
+                    &copy; 2021.
+                </strong> | Derechos Reservados
+            </div>
+        </div>
+
+    </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script
+        th:src="@{/plugins/jquery-serialize-object/jquery.serialize-object.js}"></script>
+<script th:src="@{/plugins/axios/dist/axios.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/adminlte/dist/js/adminlte.min.js}"></script>
+<script th:src="@{/plugins/moment/moment.min.js}"></script>
+<script th:src="@{/plugins/moment/locale/es.js}"></script>
+<script
+        th:src="@{/plugins/datetimerpicker/build/js/bootstrap-datetimepicker.min.js}"></script>
+<script th:src="@{/plugins/axios/dist/axios.min.js}"></script>
+<script th:src="@{/plugins/nprogress-0.2.0/nprogress.js}"></script>
+<script th:src="@{/plugins/parsley/parsley.js}"></script>
+<script th:src="@{/plugins/parsley/i18n/es.js}"></script>
+<script th:src="@{/plugins/select2/js/select2.min.js}"></script>
+<script th:src="@{/plugins/sweetalert2/sweetalert2.js}"></script>
+<script th:src="@{/plugins/bootstrap-switch/js/bootstrap4-toggle.min.js}"></script>
+<script th:src="@{/js/productoscoop15deabril.js}"></script>
+<script th:src="@{/plugins/toastr/toastr.min.js}"></script>
+<script th:src="@{/js/nprogresApp.js}"></script>
+<script th:src="@{/js/vue.min.js}"></script>
+<!-- <script th:src="@{/js/vue_d.js}"></script> -->
+<script th:inline="javascript" type="text/javascript">
+    $(document).ready(function () {
+        toastr.options = {
+            closeButton: true,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            escapeHtml: true
+        };
+
+        let fecha_hoy = moment();
+        let nav_actual, nav_anterior;
+        const fecha_min_nacimiento = moment('01/01/1900');
+
+        $('#btn_enviar ').prop("disabled", true);
+
+        $(".miselect").select2({
+            theme: 'bootstrap4',
+            placeholder: "Seleccione",
+            allowClear: true,
+            dropdownParent: "#myTabContent"
+        })
+            .on("select2:select", e => {
+                const event = new Event("change", {bubbles: true, cancelable: true});
+                e.params.data.element.parentElement.dispatchEvent(event);
+            }).on("select2:unselect", e => {
+            const event = new Event("change", {bubbles: true, cancelable: true});
+            e.params.data.element.parentElement.dispatchEvent(event);
+        });
+
+
+        $('#fechaNacimiento').datetimepicker({
+            format: 'DD/MM/YYYY',
+            icons: {
+                time: 'fa fa-clock-o',
+                date: 'far fa-calendar',
+                up: 'fas fa-chevron-up',
+                down: 'fas fa-chevron-down',
+                previous: 'fas fa-chevron-left',
+                next: 'fas fa-chevron-right',
+                today: 'fa fa-check',
+                clear: 'fa fa-trash',
+                close: 'fa fa-times'
+            },
+            timeZone: 'America/Guayaquil',
+            locale: 'es',
+            useCurrent: false,
+            minDate: fecha_min_nacimiento,
+            maxDate: fecha_hoy,
+        });
+
+        $('#fechaIngreso').datetimepicker({
+            format: 'DD/MM/YYYY',
+            icons: {
+                time: 'fa fa-clock-o',
+                date: 'far fa-calendar',
+                up: 'fas fa-chevron-up',
+                down: 'fas fa-chevron-down',
+                previous: 'fas fa-chevron-left',
+                next: 'fas fa-chevron-right',
+                today: 'fa fa-check',
+                clear: 'fa fa-trash',
+                close: 'fa fa-times'
+            },
+            timeZone: 'America/Guayaquil',
+            locale: 'es',
+            useCurrent: false,
+            minDate: fecha_min_nacimiento,
+            maxDate: fecha_hoy,
+        });
+
+
+        function ValidateFileAndExtension(fileObjet) {
+            var archivo = $(fileObjet).val();
+            var fsize = parseInt($(fileObjet)[0].files[0].size / 1024);
+            var ext = archivo.substring(archivo.lastIndexOf("."));
+
+            ext = ext.toLowerCase();
+
+            if ((ext != ".jpg" && ext != ".png" && ext != ".jpeg" && ext != ".pdf") || fsize > 2000) {
+
+                toastr.error("tipo de archivo no permitido o supera tamaño maximo ", 'Validador de Archivos');
+
+                $(fileObjet).val("");
+
+                setTimeout(function () {
+                    $(fileObjet).focus();
+                }, 5);
+
+                return false;
+
+            } else {
+                return true;
+            }
+        }
+
+
+        function loadFotoFile(fileObjet) {
+            const archivo = $(fileObjet).val();
+            const fsize = parseInt($(fileObjet)[0].files[0].size / 1024);
+            let ext = archivo.substring(archivo.lastIndexOf("."));
+
+            ext = ext.toLowerCase();
+
+            if ((ext != ".jpg" && ext != ".png" && ext != ".jpeg") || fsize > 2000) {
+
+                toastr.error("tipo de archivo no permitido o supera tamaño maximo ", 'Validador de Archivos');
+
+                $(fileObjet).val("");
+
+                setTimeout(function () {
+                    $(fileObjet).focus();
+                }, 5);
+
+                return false;
+
+            } else {
+                return true;
+            }
+        }
+
+        $('#cedula_file_f').on('change', function () {
+            ValidateFileAndExtension('#cedula_file_f');
+        });
+
+        $('#cedula_file_p').on('change', function () {
+            ValidateFileAndExtension('#cedula_file_p');
+        });
+
+        $('#sb_file').on('change', function () {
+            ValidateFileAndExtension('#sb_file');
+        });
+
+
+        $('#usa_option').bootstrapToggle({
+            on: 'Si',
+            off: 'NO',
+            size: 'sm',
+            onstyle: 'success',
+            offstyle: 'secondary'
+        }).bootstrapToggle('NO');
+
+
+        $('#chk_empleo').bootstrapToggle({
+            on: 'SI',
+            off: 'NO',
+            size: 'sm',
+            onstyle: 'success',
+            offstyle: 'secondary'
+        }).bootstrapToggle('NO');
+
+        $('#otro_pais').bootstrapToggle({
+            on: 'Si',
+            off: 'NO',
+            size: 'sm',
+            onstyle: 'success',
+            offstyle: 'secondary'
+        }).bootstrapToggle('NO');
+
+
+        $('#chk_persona_publica').bootstrapToggle({
+            on: 'Si',
+            off: 'NO',
+            size: 'sm',
+            onstyle: 'success',
+            offstyle: 'secondary'
+        }).bootstrapToggle('NO');
+
+
+        $('#terminos_tarjeta').click(function (e) {
+            e.preventDefault();
+            let url = /*[[@{/opcion/terminos/tarjeta/}]]*/'';
+            $('#frame_modal').prop('src', url + $('#codigoIdentificacion').val());
+            $('#exampleModalLong').modal('show');
+
+        });
+
+        $('#terminos_certificaciones').click(function (e) {
+            e.preventDefault();
+            let url = /*[[@{/opcion/terminos/certificaciones/}]]*/'';
+            $('#frame_modal').prop('src', url + $('#codigoIdentificacion').val());
+            $('#exampleModalLong').modal('show');
+        });
+
+        $('#terminos_contrato_cuenta_ahorro').click(function (e) {
+            e.preventDefault();
+            let url = /*[[@{/opcion/terminos/contrato/}]]*/'';
+            if (($('#apellidoUno').val() != '' && $('#apellidosDos').val() != '') && ($('#nombres').val() != '')) {
+                let nombres = $('#apellidoUno').val() + " " + $('#apellidosDos').val() + " " + $('#nombres').val();
+                $('#frame_modal_contrato').prop('src', url + $('#codigoIdentificacion').val() + "/" + nombres);
+                $('#modal_contrato').modal('show');
+            } else {
+                toastr.info("Se requiere Nombres y Apellidos", "Datos Personales");
+            }
+        });
+
+
+        let form_datos_basicos = $('#form_datos_basicos').parsley({
+            errorClass: 'is-invalid',
+            successClass: '',
+            errorsWrapper: '<div class="invalid-tooltip"></div>',
+            errorTemplate: '<span></span>',
+        });
+        let form_domicilio = $('#form_domicilio').parsley({
+            errorClass: 'is-invalid',
+            successClass: '',
+            errorsWrapper: '<div class="invalid-tooltip"></div>',
+            errorTemplate: '<span></span>',
+        });
+
+        let form_empleo_ingresos = $('#form_empleo_ingresos').parsley({
+            errorClass: 'is-invalid',
+            successClass: '',
+            errorsWrapper: '<div class="invalid-tooltip"></div>',
+            errorTemplate: '<span></span>',
+        });
+        let form_referencia = $('#form_referencia').parsley({
+            errorClass: 'is-invalid',
+            successClass: '',
+            errorsWrapper: '<div class="invalid-tooltip"></div>',
+            errorTemplate: '<span></span>',
+        });
+
+        let form_paraiso = $('#form_paraiso').parsley({
+            errorClass: 'is-invalid',
+            successClass: '',
+            errorsWrapper: '<div class="invalid-tooltip"></div>',
+            errorTemplate: '<span></span>',
+        });
+
+        let form_documentos = $('#form_documentos').parsley({
+            errorClass: 'is-invalid',
+            successClass: '',
+            errorsWrapper: '<div class="invalid-tooltip"></div>',
+            errorTemplate: '<span></span>',
+
+        });
+
+        let form_debito = $('#form_debito').parsley({
+            errorClass: 'is-invalid',
+            successClass: '',
+            errorsWrapper: '<div class="invalid-tooltip"></div>',
+            errorTemplate: '<span></span>',
+        });
+
+        let procesaCliente = async (cedulaUploadF, cedulaUploadP, sbUpload) => {
+            let url = /*[[@{procesa}]]*/'';
+            let data = $('#form_datos_basicos, #form_domicilio, #form_empleo_ingresos, #form_referencia, #form_paraiso, #form_debito').serializeObject();
+            data.cedulaFileF = cedulaUploadF;
+            data.cedulaFileP = cedulaUploadP;
+            data.sbFile = sbUpload;
+
+            await axios.post(url, data, {headers: {"Content-Type": "application/json;charset=utf-8"}})
+                .then(function (respuesta) {
+                    StopLoad();
+                    mensaje(respuesta.data.cuenta, respuesta.data.email);
+                    return;
+
+                }).catch((err) => {
+                    StopLoad();
+                    if (err.response.status === 404)
+                        toastr.error("Error", err.data);
+                    return;
+                });
+        }
+
+        let procesaArchivos = async () => {
+            let url = /*[[@{upload}]]*/'';
+            InicioLoad();
+            var archivo_cedula_file_f = $("#cedula_file_f").prop('files')[0];
+            var archivo_cedula_file_p = $("#cedula_file_p").prop('files')[0];
+            var archivo_sb_file = $("#sb_file").prop('files')[0];
+            var data = new FormData();
+            data.append('cedula_file_f', archivo_cedula_file_f);
+            data.append('cedula_file_p', archivo_cedula_file_p);
+            data.append('sb_file', archivo_sb_file);
+            data.append('dni', $('#cedula').val());
+            //send
+            return await axios.post(url, data, {headers: {'content-type': 'multipart/form-data'}});
+        }
+
+        function mensaje(cuenta, email) {
+            let url_2 = /*[[@{/}]]*/'';
+            let sms = '<p>Se ha creado su cuenta de ahorros con <b>#' + cuenta + '</b><br>';
+            sms += 'Se envió la información necesaria a su correo:<br><b>' + email + '</b>.</p>';
+            sms += '<p>Estimado cliente por su seguridad un asesor se comunicara con usted, en máximo 48 horas.</p>';
+            Swal.fire({
+                title: 'Cooperativa 15 de abril te informa',
+                html: sms,
+                icon: 'success',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                confirmButtonColor: '#218838',
+                confirmButtonText: 'Continuar',
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = url_2;
+                }
+            });
+        }
+
+        function InicioLoad() {
+            Swal.fire({
+                title: 'Espere...',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                }
+            });
+        }
+
+        function StopLoad() {
+            Swal.close();
+        }
+
+        $('#btn_prev').click(function () {
+            $('.nav-tabs .active').parent().prev('li').find('a').trigger('click');
+        });
+
+        $('#btn_next').click(function () {
+            nav_actual = $('.nav-tabs .active')[0].id
+            ValidaTabNext(nav_actual);
+        });
+
+        function ValidaTabNext(tab) {
+            switch (tab) {
+                case 'datos-basicos-tab':
+                    if (!form_datos_basicos.validate()) {
+                        $('#tabs_cta a[href="#datos-basicos"]').tab('show');
+                        return;
+                    } else {
+                        $('#tabs_cta a[href="#domicilio"]').removeClass('disabled');//.addClass('disabledTab');
+                        $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+                    }
+                    break;
+                case 'domicilio-tab':
+                    if (!form_domicilio.validate()) {
+                        $('#tabs_cta a[href="#domicilio"]').tab('show');
+                        return;
+                    } else {
+                        $('#tabs_cta a[href="#empleo"]').removeClass('disabled');//.addClass('disabledTab');
+                        $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+                    }
+                    break;
+                case 'empleo-tab':
+                    if (!form_empleo_ingresos.validate()) {
+                        $('#tabs_cta a[href="#empleo"]').tab('show');
+                        return;
+                    } else {
+                        $('#tabs_cta a[href="#ref_personal"]').removeClass('disabled');//.addClass('disabledTab');
+                        $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+                    }
+                    break;
+                case 'referencia-tab':
+                    if (!form_referencia.validate()) {
+                        $('#tabs_cta a[href="#ref_personal"]').tab('show');
+                        return;
+                    } else {
+                        $('#tabs_cta a[href="#paraiso"]').removeClass('disabled');//.addClass('disabledTab');
+                        $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+                    }
+                    break;
+                case 'paraiso-tab':
+                    if (!form_paraiso.validate()) {
+                        $('#tabs_cta a[href="#paraiso"]').tab('show');
+                        return;
+                    } else {
+                        $('#tabs_cta a[href="#documentos"]').removeClass('disabled');//.addClass('disabledTab');
+                        $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+                    }
+                    break;
+                case 'documentos-tab':
+                    if (!form_documentos.validate()) {
+                        $('#tabs_cta a[href="#documentos"]').tab('show');
+                        return;
+                    } else {
+                        $('#tabs_cta a[href="#debito"]').removeClass('disabled');//.addClass('disabledTab');
+                        $('.nav-tabs .active').parent().next('li').find('a').trigger('click');
+                    }
+                    break;
+                case 'debito-tab':
+                    if (!form_debito.validate()) {
+                        $('#tabs_cta a[href="#debito"]').tab('show');
+                        return;
+                    } else {
+                        $('#btn_enviar ').prop("disabled", false);
+
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        $('#btn_enviar').click(function (e) {
+
+            e.preventDefault();
+
+            if (!form_datos_basicos.validate()) {
+                $('#tabs_cta a[href="#datos-basicos"]').tab('show');
+                return;
+            }
+            if (!form_domicilio.validate()) {
+                $('#tabs_cta a[href="#domicilio"]').tab('show');
+                return;
+            }
+            if (!form_empleo_ingresos.validate()) {
+                $('#tabs_cta a[href="#empleo"]').tab('show');
+                return;
+            }
+            if (!form_referencia.validate()) {
+                $('#tabs_cta a[href="#ref_personal"]').tab('show');
+                return;
+            }
+            if (!form_paraiso.validate()) {
+                $('#tabs_cta a[href="#paraiso"]').tab('show');
+                return;
+            }
+            if (!form_documentos.validate()) {
+                $('#tabs_cta a[href="#documentos"]').tab('show');
+                return;
+            }
+            if (!form_debito.validate()) {
+                $('#tabs_cta a[href="#debito"]').tab('show');
+                return;
+            }
+            if (fecha_hoy.diff($('#fechaNacimiento').data("DateTimePicker").date(), 'years') < 18) {
+                $('#tabs_cta a[href="#datos-basicos"]').tab('show');
+                toastr.error("fecha nacimiento", "Debe ser mayor de edad");
+                return;
+            }
+
+            if ($('#residenteOtroPais').val() === 'S' || $('#estadounidense').val() === 'S') {
+                $('#tabs_cta a[href="#paraiso"]').tab('show');
+                Swal.fire({
+                    title: 'Aviso',
+                    text: "Si usted tiene Residencia Fiscal o Tributaria en el exterior o un país diferente al Ecuador, no puede apertura cuenta por la via online, Por favor acercarse a cualquiera de nuestras oficinas.",
+                    icon: 'info',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    confirmButtonColor: '#218838',
+                    confirmButtonText: 'Ok',
+                });
+                return;
+            }
+
+            if ($('#PersonaExpuesta').val() === 'S') {
+                $('#tabs_cta a[href="#paraiso"]').tab('show');
+                Swal.fire({
+                    title: 'Aviso',
+                    text: "Si usted es una persona públicamente expuesta, no puede apertura cuenta por la via online, Por favor acercarse a cualquiera de nuestras oficinas.",
+                    icon: 'info',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    confirmButtonColor: '#218838',
+                    confirmButtonText: 'Ok',
+                });
+                return;
+            }
+
+            Swal.fire({
+                title: 'Está seguro?',
+                text: "Se procederá a crear la cuenta",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#218838',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, continuar'
+            }).then((result) => {
+                if (result.value) {
+                    if (($('#codigoMunicipio').val() === 8) ||
+                        ($('#codigoMunicipio').val() === 9) ||
+                        ($('#codigoMunicipio').val() === 21)) {
+                        $('#codigoAgencia').val(102);
+                    } else {
+                        $('#codigoAgencia').val(101);
+                    }
+
+                    procesaArchivos().then(function (respuesta) {
+
+                        if (respuesta.data.message === "ok") {
+                            procesaCliente(respuesta.data.cedulaUploadF, respuesta.data.cedulaUploadP, respuesta.data.sbUpload);
+                            return;
+                        }
+
+                    }).catch(function (error) {
+                        StopLoad()
+                        toastr.error("Error", "Error en el Servidor");
+                        return;
+                    });
+                }
+            });
+
+        });//boton
+    });
+
+    var form_cta = new Vue({
+        el: '#app',
+        data: {
+            datosPersonales: {
+                apellidosUno: '',
+                apellidosDos: '',
+                nombres: '',
+                fechaNacimiento: '',
+                sexo: '',
+                estadoCivil: '',
+                lugarNacimiento: '',
+                nivelEstudio: '',
+                error: ''
+            },
+            datosDomicilio: {
+                codigoPais: '',
+                codigoDepartamento: '',
+                codigoMunicipio: '',
+                codigoParroquia: '',
+                barrio: '',
+                calle: '',
+                nomenclatura: '',
+                email: '',
+                errors: ''
+            },
+            datosTelefono: {
+                numeroConvencional: '',
+                numeroCelular: '',
+                operadoraCelular: '',
+                error: ''
+            },
+            datosEmpleo: {
+                codigoMunicipioEmpleo: '',
+                codigoDepartamentoEmpleo: '',
+                tipoDependenciaEmpleo: '',
+                cargoEmpleo: '',
+                nombreEmpresaEmpleo: '',
+                fechaIngreso: '',
+                error: ''
+            },
+            datosBalance: {
+                ingresoSueldo: '',
+                ingresoNegocio: '',
+                ingresoRenta: '',
+                ingresoConyuge: '',
+                ingresoOtros: '',
+                egresosAlimentacion: '',
+                egresosServiciosBasicos: '',
+                egresosVehiculo: '',
+                egresosTransporte: '',
+                egresosSalud: '',
+                egresosEducacion: '',
+                egresosOtros: '',
+                error: ''
+            },
+            datosReferencia: {
+                primerApellidoRef: '',
+                segundoApellidoRef: '',
+                nombresRef: '',
+                tipoRef: '',
+                telefonoRef: '',
+                direccionRef: '',
+                error: ''
+            },
+            datosComplementarios: {
+                descripcionNegocio: '',
+                tipoResidencia: '',
+                codigoActividadEconomica: '',
+                codigoProfesion: '',
+                comentario: '',
+                errors: ''
+            },
+            datosResidenciFiscal: {
+                codigoPais: '',
+                ciudad: '',
+                provincia: '',
+                codPostal: '',
+                dni: '',
+                telefono: '',
+                direccion: '',
+            },
+            cedula: '',
+            chk_empleo_state: false,
+            chk_usa_option_state: false,
+            chk_otro_pais_state: false,
+            chk_persona_publica: false,
+            aportaciones: false,
+            contrato_cuenta_ahorro: false,
+            terminosTarjeta: '',
+            terminosCertificado: '',
+            terminosContrato: '',
+            paiseslist: [],
+            parentescosList: [],
+            municipioEmpleoList: [],
+            departamentoEmpleoList: [],
+            dependenciaEmpleoList: [],
+            ListaEstadoCivil: [],
+            nacionalidadList: [],
+            residenciaList: [],
+            nivelEducativoList: [],
+            profesionList: [],
+            actividadEconomicaList: [],
+            operadoraCelularList: [],
+            provinciaList: [],
+            cantonesList: [],
+            parroquiasList: [],
+            barriosList: [],
+
+        },
+        mounted: function () {
+
+            var vm = this
+
+            $('#fechaNacimiento').on('dp.change', function (e) {
+                if (e.date !== false) {
+                    vm.datosPersonales.fechaNacimiento = moment(e.date).format('DD/MM/YYYY');
+                }
+            });
+            $('#fechaIngreso').on('dp.change', function (e) {
+                if (e.date !== false) {
+                    vm.datosEmpleo.fechaIngreso = moment(e.date).format('DD/MM/YYYY');
+                }
+            });
+
+
+            $('#chk_persona_publica').change(function () {
+                if ($(this).prop('checked')) {
+                    vm.chk_persona_publica = true;
+                    $('#PersonaExpuesta').val('S');
+                } else {
+                    $('#PersonaExpuesta').val('N');
+                    vm.chk_persona_publica = false;
+                }
+            });
+
+            $('#chk_empleo').change(function () {
+                if ($(this).prop('checked')) {
+                    vm.chk_empleo_state = true;
+                } else {
+                    vm.chk_empleo_state = false;
+                }
+            });
+
+            $('#usa_option').change(function () {
+                if ($(this).prop('checked')) {
+                    $('#estadounidense').val('S');
+                    vm.chk_usa_option_state = true;
+                    //vm.alertaResidenciaFiscal();
+                } else {
+                    $('#estadounidense').val('N');
+                    vm.chk_usa_option_state = false;
+                }
+            });
+
+            $('#otro_pais').change(function () {
+                if ($(this).prop('checked')) {
+                    $('#residenteOtroPais').val('S');
+                    vm.chk_otro_pais_state = true;
+                    //vm.alertaResidenciaFiscal();
+                } else {
+                    $('#residenteOtroPais').val('N');
+                    vm.chk_otro_pais_state = false;
+                }
+            });
+
+            $('#card_debito').change(function () {
+                if ($(this).prop('checked')) {
+                    $('#terminosTarjeta').val('S');
+                } else {
+                    $('#terminosTarjeta').val('');
+                }
+            });
+
+            $('#aportaciones').change(function () {
+                if ($(this).prop('checked')) {
+                    $('#terminosCertificado').val('S');
+                } else {
+                    $('#terminosCertificado').val('');
+                }
+            });
+
+            $('#contrato_cuenta_ahorro').change(function () {
+                if ($(this).prop('checked')) {
+                    $('#terminosContrato').val('S');
+                } else {
+                    $('#terminosContrato').val('');
+                }
+            });
+
+            setTimeout(function () {
+                vm.getCantonesList(vm.datosDomicilio.codigoDepartamento);
+                vm.getParroquiasList(vm.datosDomicilio.codigoDepartamento, vm.datosDomicilio.codigoMunicipio);
+                vm.getBarriosList(vm.datosDomicilio.codigoDepartamento, vm.datosDomicilio.codigoMunicipio, vm.datosDomicilio.codigoParroquia);
+                vm.getCantonesEmpleoList(vm.datosEmpleo.codigoDepartamentoEmpleo);
+            }, 700);
+
+        },
+        methods: {
+            ValidaNumber: function ($event) {
+                let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
+                if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) {
+                    $event.preventDefault();
+                }
+            },
+            alertaResidenciaFiscal: function () {
+                let url_2 = /*[[@{/}]]*/'';
+                let sms = '<p>Si usted tiene Residencia Fiscal o Tributaria en el exterior o un país diferente al Ecuador, por';
+                sms += 'favor acercarse a cualquiera de nuestras oficinas.</p>';
+                Swal.fire({
+                    title: 'Cooperativa 15 de Abril te Informa',
+                    html: sms,
+                    icon: "info",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    confirmButtonColor: '#218838',
+                    confirmButtonText: 'Ok',
+                }).then((result) => {
+                    if (result.value) {
+                        //window.location.href=url_2;
+                    }
+                });
+
+            },
+            getParentescos: function () {
+                let url = /*[[@{/opcion/parentescos/}]]*/'';
+                axios.get(url).then(resp => {
+                    this.parentescosList = resp.data;
+                }).catch(error => {
+                });
+            },
+            getEstadoCivilList: function () {
+                let url = /*[[@{/opcion/estadoCivilList/}]]*/'';
+                axios.get(url).then(resp => {
+                    this.ListaEstadoCivil = resp.data;
+                }).catch(error => {
+                });
+            },
+            getNacionalidad: function () {
+                let url = /*[[@{/opcion/nacionalidades/}]]*/'';
+                axios.get(url).then(resp => {
+                    this.nacionalidadList = resp.data;
+                }).catch(error => {
+                });
+            },
+            getResidencia: function () {
+                let url = /*[[@{/opcion/residencias/}]]*/'';
+                axios.get(url).then(resp => {
+                    this.residenciaList = resp.data;
+                }).catch(error => {
+                });
+            },
+            getNivelEstudios: function () {
+                let url = /*[[@{/opcion/estudios/}]]*/'';
+                axios.get(url).then(resp => {
+                    this.nivelEducativoList = resp.data;
+                }).catch(error => {
+                });
+            },
+            getProfesiones: function () {
+                let url = /*[[@{/opcion/profesiones/}]]*/'';
+                axios.get(url).then(resp => {
+                    this.profesionList = resp.data;
+                }).catch(error => {
+                });
+            },
+            getActividadEconomica: function () {
+                let url = /*[[@{/opcion/actividadEconomica/}]]*/'';
+                axios.get(url).then(resp => {
+                    this.actividadEconomicaList = resp.data;
+                }).catch(error => {
+                });
+            },
+            getProvincia: function () {
+                let url = /*[[@{/opcion/provincias/}]]*/'';
+                axios.get(url).then(resp => {
+                    this.provinciaList = resp.data;
+                });
+            },
+
+            getProvinciaAll: function () {
+                let url = /*[[@{/opcion/provincias/all}]]*/'';
+                axios.get(url).then(resp => {
+                    this.departamentoEmpleoList = resp.data;
+                });
+            },
+
+            getOperadoraCelular: function () {
+                let url = /*[[@{/opcion/OperadoraCelularList/}]]*/'';
+                axios.get(url).then(resp => {
+                    this.operadoraCelularList = resp.data;
+                }).catch(error => {
+                });
+            },
+            getDependenciaLaboral: function () {
+                let url = /*[[@{/opcion/dependenciaLaborales/}]]*/'';
+                axios.get(url).then(resp => {
+                    this.dependenciaEmpleoList = resp.data;
+                }).catch(error => {
+                });
+            },
+            ChangeProvincia: function (provincia_id) {
+                //console.log("provincia_id es :"+provincia_id);
+                if (provincia_id != '') {
+                    this.cantonesList = [];
+                    this.parroquiasList = [];
+                    this.barriosList = [];
+                    this.datosDomicilio.codigoMunicipio = '';
+                    this.datosDomicilio.codigoParroquia = '';
+                    this.datosDomicilio.barrio = '';
+                    this.getCantonesList(provincia_id);
+                } else {
+                    this.cantonesList = [];
+                    this.parroquiasList = [];
+                    this.barriosList = [];
+                    this.datosDomicilio.codigoMunicipio = '';
+                    this.datosDomicilio.codigoParroquia = '';
+                    this.datosDomicilio.barrio = '';
+                }
+            },
+            ChangeCanton: function () {
+                if (this.datosDomicilio.codigoDepartamento != "" && this.datosDomicilio.codigoMunicipio != "") {
+                    this.getParroquiasList(this.datosDomicilio.codigoDepartamento, this.datosDomicilio.codigoMunicipio);
+                } else if (this.datosDomicilio.codigoMunicipio == "") {
+                    this.parroquiasList = [];
+                    this.datosDomicilio.codigoParroquia = '';
+                    this.barriosList = [];
+                    this.datosDomicilio.barrio = '';
+                }
+            },
+            ChangeParroquia: function () {
+                if (this.datosDomicilio.codigoDepartamento != "" && this.datosDomicilio.codigoMunicipio != "" && this.datosDomicilio.codigoParroquia != "") {
+                    this.getBarriosList(this.datosDomicilio.codigoDepartamento, this.datosDomicilio.codigoMunicipio, this.datosDomicilio.codigoParroquia);
+                } else if (this.datosDomicilio.codigoParroquia == "") {
+                    this.barriosList = [];
+                    this.datosDomicilio.barrio = '';
+                }
+            },
+            ChangeProvinciaEmpleo: function () {
+                if (this.datosEmpleo.codigoDepartamentoEmpleo != "") {
+                    this.getCantonesEmpleoList(this.datosEmpleo.codigoDepartamentoEmpleo);
+                } else {
+                    this.datosEmpleo.codigoMunicipioEmpleo = '';
+                    this.municipioEmpleoList = [];
+                }
+            },
+            getCantonesEmpleoList: function (departamento) {
+                if (departamento != null) {
+                    let url = /*[[@{/opcion/getCantones/}]]*/'';
+                    axios.get(url + departamento).then(resp => {
+                        this.municipioEmpleoList = resp.data;
+                    }).catch(error => {
+                    });
+                }
+            },
+            getCantonesList: function (departamento) {
+                if (departamento != null) {
+                    let url = /*[[@{/opcion/getCantones/}]]*/'';
+                    axios.get(url + departamento).then(resp => {
+                        this.cantonesList = resp.data;
+
+                    }).catch(error => {
+                    });
+                }
+            },
+            getParroquiasList: function (departamento, municipio) {
+                if (departamento != null && municipio != null) {
+                    let url = /*[[@{/opcion/getParroquias/}]]*/'';
+                    axios.get(url + departamento + '/' + municipio).then(resp => {
+                        this.parroquiasList = resp.data;
+                    }).catch(error => {
+                    });
+                }
+            },
+            getBarriosList: function (departamento, municipio, parroquia) {
+                if (departamento != null && municipio != null && parroquia != null) {
+                    let url = /*[[@{/opcion/getBarrios/}]]*/'';
+                    axios.get(url + departamento + '/' + municipio + '/' + parroquia).then(resp => {
+                        this.barriosList = resp.data;
+                    }).catch(error => {
+                    });
+                }
+            },
+            getDatosPersonales: function () {
+                let url = /*[[@{/cliente/datosP}]]*/'';
+                axios.get(url).then(resp => {
+                    this.datosPersonales = resp.data;
+                }).catch(error => {
+                });
+            },
+            getDatosDireccion: function () {
+                let url = /*[[@{/cliente/datosD}]]*/'';
+                let response = axios.get(url).then(resp => {
+                    this.datosDomicilio = resp.data;
+                }).catch(error => {
+                });
+            },
+            getDatosTelefono: function () {
+                let url = /*[[@{/cliente/datosT}]]*/'';
+                axios.get(url).then(resp => {
+                    this.datosTelefono = resp.data;
+                }).catch(error => {
+                });
+            },
+            getDatosEmpleo: function () {
+                let url = /*[[@{/cliente/datosE}]]*/'';
+                axios.get(url).then(resp => {
+                    this.datosEmpleo = resp.data;
+                }).catch(error => {
+                });
+            },
+            getDatosBalance: function () {
+                let url = /*[[@{/cliente/datosEB}]]*/'';
+                axios.get(url).then(resp => {
+                    this.datosBalance = resp.data;
+                    this.datosBalance.ingresoOtros = this.datosBalance.ingresoOtros > 0 ? this.datosBalance.ingresoOtros : '';
+                    this.datosBalance.egresosAlimentacion = this.datosBalance.egresosAlimentacion > 0 ? this.datosBalance.egresosAlimentacion : '';
+                    this.datosBalance.egresosServiciosBasicos = this.datosBalance.egresosServiciosBasicos > 0 ? this.datosBalance.egresosServiciosBasicos : '';
+                    this.datosBalance.egresosSalud = this.datosBalance.egresosSalud > 0 ? this.datosBalance.egresosSalud : '';
+                }).catch(error => {
+                    console.error(error);
+                });
+            },
+            getDatosReferencia: function () {
+                let url = /*[[@{/cliente/datosRP}]]*/'';
+                axios.get(url).then(resp => {
+                    this.datosReferencia = resp.data;
+                }).catch(error => {
+                });
+            },
+            getDatosComplementarios: function () {
+                let url = /*[[@{/cliente/datosCP}]]*/'';
+                axios.get(url).then(resp => {
+                    this.datosComplementarios = resp.data;
+                }).catch(error => {
+                });
+            },
+            getListaPaises: function () {
+                let url = /*[[@{/opcion/PaisesList}]]*/'';
+                axios.get(url).then(resp => {
+                    this.paiseslist = resp.data;
+                    //this.paiseslist.push({codigoPais:'', nombre:'seleccione pais'});
+                }).catch(error => {
+                    console.error(error);
+                });
+            },
+        },
+        computed: {
+            isDisabled: function () {
+                return !this.chk_empleo_state;
+            },
+        },
+        created() {
+            this.cedula =/*[[${ dni }]]*/ '';
+            this.getDatosPersonales();
+            this.getDatosDireccion();
+            this.getDatosTelefono();
+            this.getDatosEmpleo();
+            this.getDatosBalance();
+            this.getDatosReferencia();
+            this.getDatosComplementarios();
+            this.getEstadoCivilList();
+            this.getNacionalidad();
+            this.getResidencia();
+            this.getNivelEstudios();
+            this.getProfesiones();
+            this.getActividadEconomica();
+            this.getProvincia();
+            this.getProvinciaAll();
+            this.getOperadoraCelular();
+            this.getDependenciaLaboral();
+            this.getParentescos();
+        },
+    });
+
+</script>
+
+</body>
+
+</html>

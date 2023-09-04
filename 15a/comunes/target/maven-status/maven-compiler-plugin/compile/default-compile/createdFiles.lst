@@ -1,0 +1,8 @@
+fin\coop15abril\servicios\comunes\dtos\DatosClienteME.class
+fin\coop15abril\servicios\comunes\dtos\Inversion.class
+fin\coop15abril\servicios\comunes\utilerias\JsonUtils.class
+fin\coop15abril\servicios\comunes\utilerias\DateUtils.class
+fin\coop15abril\servicios\comunes\excepciones\ExcepcionApp.class
+fin\coop15abril\servicios\comunes\dtos\CuentaAhorro.class
+fin\coop15abril\servicios\comunes\dtos\Credito.class
+fin\coop15abril\servicios\comunes\dtos\DatosClienteMS.class

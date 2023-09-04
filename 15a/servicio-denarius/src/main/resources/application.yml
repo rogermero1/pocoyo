@@ -1,0 +1,16 @@
+application:
+  title: Apis para la integracion DENARIUS
+  version: 1.0
+
+server:
+  port: 8080
+  
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+    async:
+      request-timeout: 2500
+  datasource:
+    jndi-name: java:/oracleCQA    
+    

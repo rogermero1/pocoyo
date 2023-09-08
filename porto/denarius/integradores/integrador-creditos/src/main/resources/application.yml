@@ -1,0 +1,13 @@
+application:
+  title: Integrador Creditos
+  version: 1.0
+
+server:
+  port: 8081
+  
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+    async:
+      request-timeout: 2500

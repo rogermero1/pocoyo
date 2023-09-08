@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fin.coop15abril.servicios</groupId>
+	<artifactId>denarius</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>denarius</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<modules>
+		<module>clientes-jaxws/denarius-servicio-clientes</module>
+		<module>clientes-jaxws/denarius-servicio-cuentas</module>
+		<module>clientes-jaxws/denarius-servicio-creditos</module>
+		<module>clientes-jaxws/denarius-servicio-inversiones</module>
+		<module>comunes</module>
+		<module>integradores/integrador-clientes</module>
+		<module>integradores/integrador-cuentas</module>
+		<module>integradores/integrador-creditos</module>
+		<module>integradores/integrador-inversiones</module>
+		<module>servicio-denarius</module>
+	</modules>
+
+</project>

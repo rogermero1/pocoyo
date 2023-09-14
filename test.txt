@@ -1,0 +1,12 @@
+http://localhost:8080/api-denarius/clientes/api
+
+{
+  "dataJson": "{\"identificacion\": \"1312598269\",\"consultarCuentas\": true, \"consultarCreditos\": true}",
+  "nombreMetodo": "consultaCliente"
+}
+
+{
+    "codigo": "200",
+    "mensaje": "OK",
+    "dataJson": "{\"idCliente\":297961,\"tipoIdentificacion\":\"C\",\"identificacion\":\"1312598269\",\"nombre1\":\"EMILIO\",\"nombre2\":\" JOSE\",\"nombres\":\"EMILIO JOSE\",\"apellido1\":\"VERA\",\"apellido2\":\"MEZA\",\"apellidos\":\"VERA MEZA\",\"nombreCompleto\":\"VERA MEZA EMILIO JOSE\",\"identificacionConyuge\":\"1312746215\",\"nombreConyuge\":\"RESABALA CORDOVA OLGA ISABEL\",\"estadoCivil\":\"Casado (a)\",\"celular\":\"0992837583\",\"correo\":\"emiliojosevera@hotmail.com\",\"telefonoAdicional\":\"\",\"fechaNacimiento\":\"07/02/1989\",\"nivelEducacion\":\"U\",\"tipoVivienda\":\"Propia hipotecada\",\"genero\":\"M\",\"idActividadEconomica\":\"S05\",\"direccion\":\"SAN CAYETANO AL FRENTE DE TIENDA ALAVA S/N\",\"idAgencia\":2,\"pep\":false,\"residenciaFiscal\":false,\"cuentasAhorro\":[],\"creditos\":[]}"
+}

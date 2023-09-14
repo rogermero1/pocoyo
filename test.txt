@@ -10,3 +10,110 @@ http://localhost:8080/api-denarius/clientes/api
     "mensaje": "OK",
     "dataJson": "{\"idCliente\":297961,\"tipoIdentificacion\":\"C\",\"identificacion\":\"1312598269\",\"nombre1\":\"EMILIO\",\"nombre2\":\" JOSE\",\"nombres\":\"EMILIO JOSE\",\"apellido1\":\"VERA\",\"apellido2\":\"MEZA\",\"apellidos\":\"VERA MEZA\",\"nombreCompleto\":\"VERA MEZA EMILIO JOSE\",\"identificacionConyuge\":\"1312746215\",\"nombreConyuge\":\"RESABALA CORDOVA OLGA ISABEL\",\"estadoCivil\":\"Casado (a)\",\"celular\":\"0992837583\",\"correo\":\"emiliojosevera@hotmail.com\",\"telefonoAdicional\":\"\",\"fechaNacimiento\":\"07/02/1989\",\"nivelEducacion\":\"U\",\"tipoVivienda\":\"Propia hipotecada\",\"genero\":\"M\",\"idActividadEconomica\":\"S05\",\"direccion\":\"SAN CAYETANO AL FRENTE DE TIENDA ALAVA S/N\",\"idAgencia\":2,\"pep\":false,\"residenciaFiscal\":false,\"cuentasAhorro\":[],\"creditos\":[]}"
 }
+
+
+
+public static void main(String[] args) {
+		try {
+            // Definir la URL a la que enviar la solicitud POST
+            String url = "http://localhost:8080/api-denarius/clientes/api";
+
+            // Crear una URL
+            URL obj = new URL(url);
+
+            // Abrir una conexiÃ³n HttpURLConnection
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+            // Configurar la solicitud como POST
+            con.setRequestMethod("POST");
+
+            // Configurar las cabeceras de la solicitud (si es necesario)
+            con.setRequestProperty("Content-Type", "application/json");
+
+            // Habilitar la escritura de datos en la solicitud
+            con.setDoOutput(true);
+
+            // Crear un objeto Gson para serializar el JSON
+            Gson gson = new Gson();
+
+            // Crear un JsonObject que contiene los datos deseados
+            JsonObject jsonInput = new JsonObject();
+            jsonInput.addProperty("dataJson", "{\"identificacion\": \"1311628521\",\"consultarCuentas\": true, \"consultarCreditos\": true}");
+            jsonInput.addProperty("nombreMetodo", "consultaCliente");
+
+            // Convertir el JsonObject en una cadena JSON
+            String jsonString = gson.toJson(jsonInput);
+
+            // Escribir la cadena JSON en la solicitud
+            try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
+                wr.writeBytes(jsonString);
+                wr.flush();
+            }
+
+            // Obtener la respuesta del servidor
+            int responseCode = con.getResponseCode();
+			
+
+            // Leer la respuesta del servidor
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
+                String inputLine;
+                StringBuilder response = new StringBuilder();
+
+				while ((inputLine = in.readLine()) != null) {
+					response.append(inputLine);
+				}
+		
+				// Imprimir la respuesta del servidor
+				System.out.println("Respuesta del servidor: " + response.toString());
+		
+				// Separar y mostrar el cÃ³digo, mensaje y dataJson
+				try {
+					JsonObject jsonResponse = JsonParser.parseString(response.toString()).getAsJsonObject();
+					String codigo = jsonResponse.get("codigo").getAsString();
+					String mensaje = jsonResponse.get("mensaje").getAsString();
+					String dataJson = jsonResponse.get("dataJson").getAsString();
+		
+					System.out.println("CÃ³digo: " + codigo);
+					System.out.println("Mensaje: " + mensaje);
+					System.out.println("DataJson: " + dataJson);
+		
+					// Deserializar el JSON de dataJson en un objeto Java
+					ClienteData clienteData = gson.fromJson(dataJson, ClienteData.class);
+		
+					// Acceder a las propiedades del objeto Java
+					System.out.println("idCliente: " + clienteData.getIdCliente());
+					System.out.println("tipoIdentificacion: " + clienteData.getTipoIdentificacion());
+					System.out.println("identificacion: " + clienteData.getIdentificacion());
+					System.out.println("nombre1: " + clienteData.getNombre1());
+					System.out.println("nombre2: " + clienteData.getNombre2());
+					System.out.println("nombreCompleto: " + clienteData.getNombreCompleto());
+					
+					// Acceder a cuentasAhorro como objeto JSON
+                    JsonArray cuentasAhorroArray = clienteData.getCuentasAhorro();
+					
+					if (cuentasAhorroArray != null && cuentasAhorroArray.size() > 0) {
+						System.out.println("NUMERO DE CUENTAS DE AHORRO: "+ cuentasAhorroArray.size());
+						System.out.println("cuentasAhorro: " + cuentasAhorroArray);
+					} else {
+						System.out.println("Cuenta de Ahorro: Ninguna");
+					}
+
+                    // Acceder a creditos como objeto JSON
+                    JsonArray creditosArray = clienteData.getCreditos();
+                    if (creditosArray != null && creditosArray.size() > 0) {
+						System.out.println("cantidad de creditos: " + creditosArray.size());
+						System.out.println("creditos: " + creditosArray);
+						
+					} else {
+						System.out.println("No tiene Credito");
+					}
+
+				} catch (Exception jsonException) {
+					System.err.println("Error al analizar la respuesta JSON: " + jsonException.getMessage());
+				}
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		
+	}

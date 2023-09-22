@@ -1,0 +1,11 @@
+*** CORREGIDAS ***
+
+
+public class ActualizarInformaci�nVinculado
+public class ActualizarInformaci�nVinculadoResponse 
+
+public class ConsultarInformaci�nVinculado
+public class ConsultarInformaci�nVinculadoResponse
+
+
+public class ObjectFactory
